@@ -16,7 +16,6 @@ services:
   - type: web
     name: packwise-web
     runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
