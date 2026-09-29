@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: packwise-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////app/var/food_packaging.db
+      - key: CORS_ORIGINS
+        value: '["https://packwise-web.onrender.com"]'
+
+  - type: web
+    name: packwise-web
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://packwise-api.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

@@ -123,6 +123,14 @@ docker compose down --volumes
 
 The compose file supports `FRONTEND_PORT` and `BACKEND_PORT` overrides, for example `$env:FRONTEND_PORT = "5174"` before starting Compose.
 
+## Deploy to Render
+
+The repository includes a Render Blueprint at `render.yaml` with a Docker-based FastAPI service and a static Vite frontend. To deploy, open the Render Blueprint flow, connect the GitHub repository, review the two services, and apply the Blueprint. Render assigns public service URLs; the frontend build is configured to call the API service.
+
+The Blueprint uses free services and SQLite on the API container's ephemeral filesystem. **Recommendation history can be lost when the API service restarts, redeploys, or spins down.** For durable history, attach a persistent disk to the API service and mount it at `/app/var`, or use a managed database and update `DATABASE_URL`.
+
+The first API image build generates the synthetic dataset and trains both models, so allow extra build time. Render may require an authenticated GitHub connection and an active account before it can create services.
+
 ## API Reference
 
 All endpoints are under `/api`:
