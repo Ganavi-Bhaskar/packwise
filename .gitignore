@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Generated model and data artifacts
+backend/ml/artifacts/*
+!backend/ml/artifacts/.gitkeep
+backend/data/*.csv
+backend/data/*.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Local environment and editor files
+.env
+.vscode/

@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.env
+.git/
+
+# Regenerated inside the image build; do not send ignored local outputs.
+data/*.csv
+data/*.db
+ml/artifacts/*
+!ml/artifacts/.gitkeep
